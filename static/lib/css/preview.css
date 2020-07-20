@@ -1,0 +1,33 @@
+.preview-1 .nivoSlider{position:relative;background:url() no-repeat 50% 50%;}
+.preview-1 .nivoSlider a {
+  border: 1px solid black;
+  display: block;
+}
+.preview-1 .nivo-controlNav{text-align:center;padding:20px 0;}
+.preview-1 .nivo-controlNav a{display:inline-block;width:22px;height:22px;background:url(https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/lib/img/bullets.png) no-repeat;text-indent:-9999px;border:0;margin:0 2px;}
+.preview-1 .nivo-controlNav a.active{background-position:0 -22px;}
+.preview-1 .nivo-directionNav a {
+  background: rgba(0, 0, 0, 0) url("https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/lib/img/arrows.png") no-repeat scroll 0 0;
+  border: 0 none;
+  display: block;
+  height: 50px;
+  opacity: 0;
+  text-indent: -9999px;
+  transition: all 200ms ease-in-out 0s;
+  width: 25px;
+}
+.preview-1 a.nivo-nextNav {
+  background-position: -25px 0;
+  right: 15px;
+}
+.preview-1:hover .nivo-directionNav a{opacity:1;}
+.preview-1 a.nivo-prevNav{left:15px;}
+.preview-1 .nivo-caption{font-family:Helvetica, Arial, sans-serif;}
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled{width:100%;}
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled a{width:auto;height:auto;background:none;margin-bottom:5px;}
+.preview-1 .nivo-controlNav.nivo-thumbs-enabled img{display:block;width:120px;height:auto;}
+.preview-1 .nivo-controlNav{bottom:15px;left:49%;position:absolute;z-index:99999;}
+.bend.niceties.preview-1{position:relative;}
+.preview-1 .nivo-controlNav a{border:5px solid #fff;display:inline-block;height:18px;margin:0 5px;text-indent:-9999px;width:18px;line-height:8px;background:#3c3c3c;cursor:pointer;position:relative;z-index:9;border-radius:100%;opacity:0;z-index:-999;}
+.preview-1:hover .nivo-controlNav a{opacity:1;z-index:999999;}
+.preview-1 .nivo-controlNav a:hover, .preview-1 .nivo-controlNav a.active{background:#000;cursor:pointer;}

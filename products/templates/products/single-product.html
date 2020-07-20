@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+        <div class="breadcrumbs-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="breadcrumb-single">
+                            <ul class="breadcrumbs">
+                                <li><a href="{% url 'home' %}" title="Return to Home">
+                                    Home
+                                </a></li>
+                                <li>
+                                    <span>></span>
+                                </li>
+                                <li style="color:white;">COLLECTION</li>
+                                <li>
+                                    <span>></span>
+                                </li>
+                                <li style="color:white;">{{ obj.type }}</li>
+                                <li>
+                                    <span>></span>
+                                </li>
+                                <li style="color:#fedd49;">{{ obj.summary }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="product-simple-area">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-7">
+                        <div class="single-product-image-inner">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="one">
+                                    <a class="venobox" href="{{ obj.image.url }}" data-gall="gallery" title="">
+                                        <img src="{{ obj.image.url }}" alt="">
+                                    </a>
+                                </div>
+                                <!--<div role="tabpanel" class="tab-pane" id="two">
+                                    <a class="venobox" href="{{ i.image.url }}" data-gall="gallery" title="">
+                                        <img src="{{ i.image.url }}" alt="">
+                                    </a>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="three">
+                                    <a class="venobox" href="{{ i.image.url }}" data-gall="gallery" title="">
+                                        <img src="{{ i.image.url }}" alt="">
+                                    </a>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-offset-1 col-md-5 col-sm-5">
+                        <div class="single-product-details">
+                            <h3>{{ obj.summary }}</h3>
+                            <!--<h4>in stock</h4>-->
+                            <p>Code:&nbsp{{ obj.name }}</p>
+                            <div class="single-product-price">
+                                <h2><i class="fa fa-inr" aria-hidden="true"></i>{{ obj.price }}</h2>
+                            </div>
+
+                            <br>
+                            <h3 style="color:black;">Want to Order?</h3><br>
+                            <a href="{% url 'contact' %}" class="btn-default">Contact Now</a>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="sharethis-inline-share-buttons"></div>
+                            <br>
+
+
+
+		                <form class="comments-advices" action="{% url 'review' %}" method="POST" style="    background-color:#e5e5e5;padding: 10px;border: 1px solid;border-radius: 5px;">
+		                    {% csrf_token %}
+		                    Write Your review
+                            <input type="text" name="code" hidden value={{ obj.id }}>
+                            <input type="text" name="name" value="" placeholder="Your Name" class="comments-advices" id="" style="width:100%;margin-top:10px !important" required><br>
+                            <textarea name="review" placeholder="Review" class="comments-advices" id="" style="width:100%;margin-top:10px !important" required></textarea>
+                            <div class="txt-center" style="margin-top:10px;margin-bottom:10px;font-size:16px">
+                                <div class="rating">
+                                    <input id="star5" name="star" type="radio" value="5" class="radio-btn hide" />
+                                    <label for="star5" >☆</label>
+                                    <input id="star4" name="star" type="radio" value="4" class="radio-btn hide" />
+                                    <label for="star4" >☆</label>
+                                    <input id="star3" name="star" type="radio" value="3" class="radio-btn hide" />
+                                    <label for="star3" >☆</label>
+                                    <input id="star2" name="star" type="radio" value="2" class="radio-btn hide" />
+                                    <label for="star2" >☆</label>
+                                    <input id="star1" name="star" type="radio" value="1" class="radio-btn hide" />
+                                    <label for="star1" >☆</label>
+                                    <div class="clear"></div>
+                                </div>
+                            </div>
+                            <button type="submit" name="button">Submit</button>
+                        </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% if reviewobj.count == 0 %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+{% endif %}
+
+<!--Review Section Start -->
+{% if reviewobj.count != 0 %}
+        <div class="featured-product-area section-padding">
+                    <div class="container">
+                        <div class="row">
+                            <h3 style="color:black;">Reviews</h3>
+                            <div class="featured-product-list indicator-style">
+                                {% for i in reviewobj %}
+                                <!--<div class="col-lg-3 " style="text-align: center;background: white;border: 1px solid;border-radius: 15px;margin-right:6%">-->
+                                    <div  class="single-new-trend" style="padding:20px;background:white;border-radius:3rem;text-align:center;margin-right:15px;">
+
+
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i><br>
+                                        {{ i.review }}<br>
+                                        <img style="width:25%;"src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTsrPmRoSygzyOZ_deELr4N3ASwknItL5M_oQ&usqp=CAU"><br>
+                                        {{ i.name }}<br>
+                                        {% if i.star == 1 %}
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+
+                                        {% endif %}
+                                        {% if i.star == 2 %}
+
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+
+                                        {% endif %}
+                                        {% if i.star == 3 %}
+
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+
+                                        {% endif %}
+                                        {% if i.star == 4 %}
+
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star"></i>
+
+                                        {% endif %}
+                                        {% if i.star == 5 %}
+
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+                                                <i class="fa fa-star starcolor"></i>
+
+                                        {% endif %}
+                                    </div>
+                                <!--</div>-->
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+        <!-- Product Simple Area End -->
+        <!--Related Product Area Start-->
+        <div class="featured-product-area section-padding-2">
+            <div class="container">
+                <div class="row">
+                    <div class="">
+                        <h2 align="center" style="font-size: 20px;font-weight: 700;text-transform: uppercase;color:black">Related  products</h2>
+
+                    </div>
+                    <div class="featured-product-list indicator-style">
+                        {% for i in related %}
+                        <div class="col-md-3">
+                            <div class="single-new-trend">
+                                <a href="{% url 'singleproduct' i.type i.id %}"><img src="{{ i.image.url }}" alt=""></a>
+                                <div class="overlay-content">
+                                    <a href="{% url 'singleproduct' i.type i.id %}"><h2 style="color:white;"><i class="fa fa-inr" aria-hidden="true"></i>{{ i.price }}</h2></a>
+                                    <h4><a href="{% url 'singleproduct' i.type i.id %}">{{ i.summary }}</a></h4>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    <i style="text-align: center;width: 100%;" class="fa fa-ellipsis-h fa-3x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+          <!--Related Product Area End-->
+  <!-- Brand Area Start -->
+  <!--<div class="brand-area section-padding-2">
+  <div class="container">
+  <div class="row">
+  <div class="section-title">
+  <h2>OUR BRANDS</h2>
+  </div>
+  <div class="brand-list indicator-style2">
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/1.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/2.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/3.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/4.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/5.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/1.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/2.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  <div class="col-md-12">
+  <div class="single-brand">
+  <a href="#">
+  <img src="https://d29u17ylf1ylz9.cloudfront.net/taj-preview/taj/img/brand/3.jpg" alt="">
+  </a>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>-->
+
+       {% endblock %}

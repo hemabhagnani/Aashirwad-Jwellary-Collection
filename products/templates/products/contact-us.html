@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+         <!-- Breadcrumbs Area Start -->
+        <div class="breadcrumbs-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="breadcrumb-single">
+                            <ul class="breadcrumbs">
+                                <li><a href="{% url 'home' %}" title="Return to Home">
+                                    Home
+                                </a></li>
+                                <li>
+                                    <span>></span>
+                                </li>
+                                <li style="color:white;">CONTACT US</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Header Area End-->
+		<!-- Map Area Start -->
+		<div class="map-area">
+		<div id="googleMap" style="width:100%;height:445px;;"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2283.5208840580713!2d80.8098850561458!3d25.9398219322952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396db5d8d6bd8d31%3A0x8b01517171bcbc1d!2sAashirwad%20Jewellery%20Collection!5e0!3m2!1sen!2sin!4v1595142505799!5m2!1sen!2sin" width="100%" height="445px" frameborder="0" style="border:1px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe></div>
+		</div>
+		<!-- Map Area End -->
+		<!-- Address Information Area Start -->
+
+		<div class="address-info-area">
+			<div class="container">
+			    {% if messages %}
+                <p class="messages" style="text-align: center;font-family: initial;font-style: italic;" >
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <h3 align="center" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</h3>
+                </div>
+                    {% endfor %}
+                </p>
+                    <br>
+                {% endif %}
+				<div class="row">
+					<div class="col-md-4 hidden-sm">
+						<div class="address-single">
+							<div class="all-adress-info">
+								<div class="icon">
+									<span><i class="fa fa-user-plus"></i></span>
+								</div>
+								<div class="info">
+									<h3>MOBILE</h3>
+									<p>+(91)-9461036126</p>
+									<p>+(91)-9887188330</p>
+
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="address-single">
+							<div class="all-adress-info">
+								<div class="icon">
+									<span><i class="fa fa-map-marker"></i></span>
+								</div>
+								<div class="info">
+									<h3>ADDRESS</h3>
+									<p>21, Ganpati Enclave, </p>
+									<p>Near Guddu Paradise, Mangyawaas,</p>
+									<p> Mansarover,Jaipur(RAJ),INDIA</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6">
+						<div class="address-single no-margin">
+							<div class="all-adress-info">
+								<div class="icon">
+									<i class="fa fa-envelope"></i>
+								</div>
+								<div class="info">
+									<h3>E-MAIL</h3>
+									<br>
+									<p>laxmiramwani77@gmail.com</p>
+
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Address Information Area End -->
+		<!-- Contact Form Area Start -->
+		<div class="contact-form-area">
+			<div class="container">
+				<div class="about-title">
+					<h3>LEAVE A MESSAGE</h3>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<form action="{% url 'contact' %}" method="POST">
+						    {% csrf_token %}
+							<div class="row">
+								<div class="col-md-5">
+									<div class="contact-form-left">
+										<input type="text" placeholder="Your Name" name="name" id="name" />
+										<input type="email" placeholder="Your Email id" name="email" id="email" />
+										<input type="text" placeholder="Your phone number" name="phone" id="phone" />
+									</div>
+								</div>
+								<div class="col-md-7">
+									<div class="contact-form-right">
+										<div class="input-message">
+											<textarea name="message" id="message" placeholder="Your Message"></textarea>
+											<input class="btn btn-default" type="submit" value="SEND" name="submit" id="submit">
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Contact Form Area End -->
+        <!-- Footer Area Start -->
+        {% endblock %}
